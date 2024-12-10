@@ -10,12 +10,16 @@ function groupedData(arr: [], data: string) {
   return reduceArr;
 }
 
-function pushToFile(obj: any, name: string) {
+function pushToFile(obj: object, name: string) {
   let count = 0;
   let trueLength = Object.keys(obj).length;
-  Object.keys(obj).map((i: any) => {
+  Object.keys(obj).map((i: string) => {
     try {
-      fs.writeFile(`${name} ${i}.txt`, JSON.stringify(obj[i]), () => {});
+      fs.writeFile(
+        `${name} ${i}.txt`,
+        JSON.stringify(obj[i as keyof Object]),
+        () => {}
+      );
       count++;
     } catch {
       console.log("Error");
